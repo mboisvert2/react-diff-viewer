@@ -13,9 +13,12 @@
 		"react-component",
 		"ui"
 	],
-	"repository": "git@github.com:praneshr/react-diff-viewer.git",
+	"repository": "git@github.com:mboisvert2/react-diff-viewer.git",
 	"license": "MIT",
-	"author": "Pranesh Ravi<praneshpranesh@gmail.com>",
+	"author": [
+		"Pranesh Ravi<praneshpranesh@gmail.com>",
+		"Melanie Boisvert<melanie.boisvert@mondoin.com>"
+	],
 	"main": "lib/index",
 	"typings": "lib/index",
 	"scripts": {
