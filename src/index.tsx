@@ -54,6 +54,7 @@ export interface ReactDiffViewerProps {
 	// Event handler for line number click.
 	onLineNumberClick?: (
 		lineId: string,
+		type: number,
 		event: React.MouseEvent<HTMLTableCellElement>,
 	) => void;
 	// Array of line ids to highlight lines.
@@ -163,10 +164,11 @@ class DiffViewer extends React.Component<
 	 * onLineNumberClick handler is supplied.
 	 *
 	 * @param id Line id of a line.
+  	 * @param type Difference type
 	 */
-	private onLineNumberClickProxy = (id: string): any => {
+	private onLineNumberClickProxy = (id: string, type: DiffType): any => {
 		if (this.props.onLineNumberClick) {
-			return (e: any): void => this.props.onLineNumberClick(id, e);
+			return (e: any): void => this.props.onLineNumberClick(id, type, e);
 		}
 		return (): void => {};
 	};
@@ -239,7 +241,7 @@ class DiffViewer extends React.Component<
 				{!this.props.hideLineNumbers && (
 					<td
 						onClick={
-							lineNumber && this.onLineNumberClickProxy(lineNumberTemplate)
+							lineNumber && this.onLineNumberClickProxy(lineNumberTemplate, type)
 						}
 						className={cn(this.styles.gutter, {
 							[this.styles.emptyGutter]: !lineNumber,
@@ -254,7 +256,7 @@ class DiffViewer extends React.Component<
 					<td
 						onClick={
 							additionalLineNumber &&
-							this.onLineNumberClickProxy(additionalLineNumberTemplate)
+							this.onLineNumberClickProxy(additionalLineNumberTemplate, type)
 						}
 						className={cn(this.styles.gutter, {
 							[this.styles.emptyGutter]: !additionalLineNumber,
